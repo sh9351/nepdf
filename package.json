@@ -20,7 +20,7 @@
     "appId": "com.sh9351.nepdf",
     "productName": "NEPDF",
     "win": {
-      "target": "nsis",
+      "target": "portable",
       "legalTrademarks": "Copyright © Sehoon Lim, Inc. Some Rights Reserved / Copyright © NE Neungyule, Inc. Some Rights Reserved"
     },
     "nsis": {
