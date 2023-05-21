@@ -1,0 +1,31 @@
+{
+  "name": "nepdf",
+  "version": "1.0.0",
+  "description": "NE능률의 Ebook을 손쉽게 PDF로 변환하세요.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "sh9351",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "electron": "^24.3.1"
+  },
+  "build": {
+    "appId": "com.sh9351.nepdf",
+    "productName": "NEPDF",
+    "win": {
+      "target": "nsis",
+      "legalTrademarks": "Copyright © Sehoon Lim, Inc. Some Rights Reserved / Copyright © NE Neungyule, Inc. Some Rights Reserved"
+    },
+    "nsis": {
+      "artifactName": "NEPDF ${version}.${ext}",
+      "deleteAppDataOnUninstall": true
+    }
+  }
+}

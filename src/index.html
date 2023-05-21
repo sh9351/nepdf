@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>NEPDF</title>
+    <style>
+        @font-face {
+            font-family: 'Pretendard';
+            font-display: swap;
+            src: local('Pretendard'), url('./Pretendard.otf');
+        }
+
+        * {
+            font-family: Pretendard;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ProgressMessage position-absolute top-50 start-50 translate-middle rounded-3 overlay text-center p-5 border d-none">
+        <div class="spinner-border text-primary p-3 m-2"></div>
+        <h3 class="Progress">1 / 160</h3>
+        <h5>잠시만 기다려주세요...<h3>
+    </div>
+    <main class="p-4">
+        <h1>NEPDF</h1>
+        <a class="h4 text-muted text-decoration-none" onclick="IPC.send('AuthorPortfolio')">손쉬운 NE능률 EBook PDF 변환 · Made
+            by sh9351</a>
+        <div class="input-group pb-3">
+            <input type="text" class="form-control EbookURL"
+                value="https://ebook.nebooks.co.kr/nw/view.php?bookCode=/h/BD04000023/&authkey=1684505940"
+                placeholder="https://ebook.nebooks.co.kr/nw/view.php?bookCode=/h/BD04000023/&authkey=1684505940">
+            <button class="btn btn-primary ConvertPDF">PDF 변환</button>
+        </div>
+    </main>
+    <script>
+        document.querySelector('.ConvertPDF').addEventListener('click', () => {
+            IPC.invoke('ConvertPDF', document.querySelector('.EbookURL').value)
+        })
+        IPC.on('Progress', (e, Progress) => {
+            document.querySelector('main').classList.add('d-none')
+            document.querySelector('.ProgressMessage').classList.remove('d-none')
+            document.querySelector('.Progress').textContent = Progress
+        })
+        IPC.on('Complete', () => {
+            document.querySelector('main').classList.remove('d-none')
+            document.querySelector('.ProgressMessage').classList.add('d-none')
+            document.querySelector('.EbookURL').value = null
+        })
+    </script>
+</body>
+
+</html>
